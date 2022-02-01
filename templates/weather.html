@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="margin: 20px">
+        <h1 style="text-align: center;">{{ data[1] }}</h1>
+        <h2 style="text-align: center;">{{ data[0] }}</h2>
+    </div>
+    <div class="h-100 row align-items-center">
+        <div class="container">
+            <div class="row row-cols-4 justify-content-center">
+                {% for day in range(3,10) %}
+                    <div class="card shadow p-3 mb-5 rounded" style="width: 25rem; margin: 2rem; background-color: #8eacbb">
+                        <div class="row">
+                            <div class="col" style="">
+                                    <h5 class="card-title" style="">{{ data[day][0] }}</h5>
+                                    <p class="card-text">{{ data[day][1] }}</p>
+                            </div>
+                            <div class="col">
+                                    <img src="http://openweathermap.org/img/w/{{ data[day][5] }}.png" style="margin: auto; display: block;">
+                            </div>
+                        </div>
+                        <div class="row" style="background-color: #8eacbb;">
+                            <ul class="list-group list-group-flush" style="background-color: #8eacbb;">
+                                <li class="list-group-item" style="background-color: #8eacbb;"></li>
+                                <li class="list-group-item" style="background-color: #8eacbb;">Day: {{ data[day][2] }}&#8451;</li>
+                                <li class="list-group-item" style="background-color: #8eacbb;">Night: {{ data[day][3] }}&#8451;</li>
+                                <li class="list-group-item" style="background-color: #8eacbb;">Humidity: {{ data[day][4] }}%</li>
+                            </ul>
+                        </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="container">
+    <div class="row">
+      <div class="col-xs-4 text-center">
+        <a href="/upload" class="btn btn-outline-dark" role="button">Upload To DB</a>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
