@@ -5,17 +5,17 @@ import pytz
 from boto3 import client, resource
 
 
-application = Flask(__name__)
+app = Flask(__name__)
 
 weather = 0
 
-@application.route('/')
+@app.route('/')
 def home():
     """Render base.html"""
     return render_template('base.html')
 
 
-@application.route('/weather', methods=['POST'])
+@app.route('/weather', methods=['POST'])
 def weather():
     """Render the weather page"""
     city = request.form['city2']
@@ -101,7 +101,7 @@ def attach_user_policy():
 #         f'{Path.home()}/Downloads/{"image.txt"}')
 
 
-@application.route('/image', methods=['GET'])
+@app.route('/image', methods=['GET'])
 def index():
     s3 = client('s3')
     file = s3.get_object(Bucket='alon2222bucket', Key='sky')
@@ -111,7 +111,7 @@ def index():
         headers={"Content-Disposition": "attachment;filename=sky"}
     )
 
-@application.route('/upload', methods=['GET'])
+@app.route('/upload', methods=['GET'])
 def upload_to_db():
     dynamodb = resource('dynamodb', region_name='eu-west-2')
     now = datetime.now()
@@ -129,4 +129,4 @@ def upload_to_db():
 
 
 if __name__ == '__main__':
-    application.run(host='0.0.0.0')
+    app.run(host='0.0.0.0')
